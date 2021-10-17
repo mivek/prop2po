@@ -2,6 +2,14 @@
 
 Prop2PO package converts a java property file into a Gettext PO file.
 
+## Installation
+
+You can install the package from pypi. 
+
+```shell
+pip install prop2po
+```
+
 ## Usage
 
 ```shell
