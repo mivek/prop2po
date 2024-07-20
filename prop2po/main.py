@@ -31,5 +31,10 @@ msgstr ""
     ))
     for line in lines:
         if not line.isspace():
-            parts = line.split('=')
-            destination.write('#:\n' + 'msgid "' + parts[0] + '"\n' + 'msgstr "' + parts[1][:-1] + '"\n\n')
+            # Split only on the first instance of '=' so that the character can also appear in the string
+            parts = line.split('=', 1)
+            try:
+                # This line fails on comments/any lines with less than two parts after splitting
+                destination.write('#:\n' + 'msgid "' + parts[0] + '"\n' + 'msgstr "' + parts[1][:-1] + '"\n\n')
+            except IndexError as e:
+                print("FAILED on line{}".format(line))
